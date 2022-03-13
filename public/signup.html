@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Animated signup </title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div class="center">
+      <h1>Sign-up</h1>
+      <form onsubmit="signup(event)">
+        <div class="txt_field">
+          <input type="text" name="email" required>
+          <span></span>
+          <label>Email</label>
+        </div>
+        <div class="txt_field">
+            <input type="text" required name="name">
+            <span></span>
+            <label>Full name</label>
+          </div>
+          <div class="txt_field">
+            <input type="text" name="phone" required>
+            <span></span>
+            <label>phone</label>
+          </div>
+        <div class="txt_field">
+          <input type="password" name="password" required>
+          <span></span>
+          <label>Password</label> 
+        </div>
+        
+        <input type="submit" value="Sign-up">
+        <div class="signup_link">
+         Existing member? <a href="login.html">Login</a>
+        </div>
+      </form>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.26.1/axios.min.js" integrity="sha512-bPh3uwgU5qEMipS/VOmRqynnMXGGSRv+72H/N260MQeXZIK4PG48401Bsby9Nq5P5fz7hy5UGNmC/W1Z51h2GQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script>
+
+
+
+    function signup(e){
+      e.preventDefault();   
+        
+        const form=new FormData(e.target);
+        let signUpDetails={
+            email:form.get('email'),
+            name:form.get('name'),
+            phone:form.get('phone'),
+            password:form.get('password')
+            }  
+            axios.post('http://localhost:5050/signup',signUpDetails)
+  // .then(function (response) {
+  //   console.log(response);
+  // })
+  // .catch(function (error) {
+  //   console.log(error);
+  // });
+
+  .then(function (response) {
+   alert(response.data.message)
+    console.log(response);
+  });
+
+
+          }
+
+
+
+
+</script>
+  </body>
+</html>

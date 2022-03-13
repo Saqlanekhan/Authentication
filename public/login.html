@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Animated Login Form </title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div class="center">
+      <h1>Login</h1>
+      <form onsubmit="login(event)">
+        <div class="txt_field">
+          <input type="text" name="email" required>
+          <span></span>
+          <label>Email</label>
+        </div>
+        <div class="txt_field">
+          <input type="password" name="password" required>
+          <span></span>
+          <label>Password</label>
+        </div>
+        <div class="pass">Forgot Password?</div>
+        <input type="submit" value="Login">
+        <div class="signup_link">
+          Not a member? <a href="signup.html">Signup</a>
+        </div>
+      </form>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.26.1/axios.min.js" integrity="sha512-bPh3uwgU5qEMipS/VOmRqynnMXGGSRv+72H/N260MQeXZIK4PG48401Bsby9Nq5P5fz7hy5UGNmC/W1Z51h2GQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+   function login(e){
+     e.preventDefault();
+     const form=new FormData(e.target);
+
+     const logindetails = {
+       email:form.get('email'),
+       password:form.get('password')
+      
+     }
+     axios.post('http://localhost:5050/login',logindetails)
+  .then(function (response) {
+   alert(response.data.message)
+    console.log(response);
+  })
+  
+   }
+    </script>
+
+  </body>
+</html>
